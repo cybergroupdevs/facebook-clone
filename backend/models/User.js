@@ -79,7 +79,6 @@ const viewPost = async (req, res) => {
         let obj = new Object()
         obj.name = user[0].firstName + ' ' + user[0].lastName
         obj.image = user[0].profileImage;
-        console.log(obj.image)
         let post = await PostModel.find().sort({ "postedAt": 'desc' })
         return ({ post, obj });
     }

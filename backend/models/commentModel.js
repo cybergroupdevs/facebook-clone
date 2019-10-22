@@ -7,7 +7,7 @@ const commentSchema = new Schema({
     commentText : String,
     createdAt :{
         type : Date,
-        default :Date.now()
+        default :Date.now
     } ,
     userName : String
 })
