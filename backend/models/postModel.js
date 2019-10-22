@@ -10,6 +10,6 @@ const PostModel = new Schema({
         type : Date,
         default : Date.now
     },
-    postText: String
+    postText: String,
 })
 module.exports = mongoose.model("Post", PostModel)
