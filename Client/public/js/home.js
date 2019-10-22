@@ -143,17 +143,12 @@ $(document).ready(function () {
             token: localStorage.getItem('userToken')
         },
         success: function (data) {
-<<<<<<< HEAD
-            
-            //document.getElementById("userName").innerHTML = data.obj.name
-=======
 
             document.getElementById("userName").innerHTML = data.obj.name
             // if( data.obj.image !=''){
             // var img = document.getElementById("user-profile");
             // img.setAttribute('src',data.obj.image);
             // }
->>>>>>> 471b9072d19315e1bbcae200a3bb5c0e0d3992ef
             showdata(data.post)
         },
         error: function (error) {

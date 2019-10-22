@@ -78,14 +78,14 @@ const uploadImage = async(req,res)=>{
 //get post of all users
 const viewPost = async (req, res) => {
     try {
-        console.log('post get')
+        
         let user = await signupdata.find({_id:req.headers.tokenValue})
         let obj = new Object()
         obj.name = user[0].firstName+' '+user[0].lastName
         obj.image = user[0].profileImage;
-        console.log(user)
+        
         let post = await PostModel.find().sort({ "postedAt": 'desc' })
-        console.log(post)
+        
         return ({post,obj});
     }
     catch (error) {
