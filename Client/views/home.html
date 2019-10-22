@@ -11,6 +11,7 @@
     <script src="https://use.fontawesome.com/7bfc1da72e.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../public/css/home.css">
+    <link rel="stylesheet" href="../public/css/home1.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
     <title>Home</title>
@@ -26,18 +27,17 @@
         </div>
         <div class="right-side">
             <a href="#" class="profile" id="user_profile">
-                <img class="rounded-circle user-profile" src="/assets/1571649371478-n2.jpg">
+                <img class="rounded-circle user-profile" src="/Client/assets/1571649371478-n2.jpg">
                 <p id="userName"></p>
             </a>|
             <a href="#" class="home-create"><p>Home</p></a>
-                |
+                
             <a href="#" class="home-create"> <p>Create</p></a>
-            |
+            
             <div class="notice-icon">
                 <a href="#"><p><i class="fa fa-users" aria-hidden="true"></i></p></a>
                 <a href="#"><p><i class="fa fa-comment" aria-hidden="true"></i></p></a>
                 <a href="#"><p><i class="fa fa-bells" aria-hidden="true"></i></p></a>
-                |
                 <a href="#"><p><i class="fa fa-question-circle" aria-hidden="true"></i></p></a>
                 <a href="#"><p><i class="fa fa-sign-out" aria-hidden="true"></i></p></a>
             </div>
@@ -45,8 +45,19 @@
     </nav>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-3 left"></div>
-            <div class="col-sm-6 main">
+            <div class="col-sm-3 left">
+                <div class="sidenav">
+                    <a href="#about"><p><i class="fa fa-comment" aria-hidden="true" style="color: blue;"></i>&nbsp;&nbsp;&nbsp;&nbsp; Messenger</p></a>
+                    <a href="#services"><p><i class="fa fa-clock-o" aria-hidden="true" style="color: blue;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Watch</p></a>
+                    <a href="#clients"><p><i class="fa fa-map-marker" aria-hidden="true" style="color: yellowgreen;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Marketplace</p></a>
+                    <a href="#contact"><p><i class="fa fa-users" aria-hidden="true" style="color: blue;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Groups</p></a>
+                    <a href="#services"><p><i class="fa fa-flag" aria-hidden="true" style="color: orangered;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Pages</p></a>
+                    <a href="#clients"><p><i class="fa fa-calendar" aria-hidden="true" style="color: red;"></i>&nbsp;&nbsp;&nbsp;&nbsp;Events</p></a>
+                    <a href="#contact"><p><i class="fa fa-bookmark" aria-hidden="true" style="color: rgb(106, 148, 148)"></i>&nbsp;&nbsp;&nbsp;&nbsp;Saved</p></a>
+
+                  </div>
+            </div>
+            <div class="col-sm-5 main">
                 <form class="post" name="formdata" id="post-form">
                     <h5>Create Your Post:</h5>
                     <textarea id="myTextarea" rows="3" placeholder="Write something..."></textarea><br>
@@ -58,7 +69,7 @@
                 </form>
                 <div id="show-post-div"></div>
             </div>
-            <div class="col-sm-3 right" ></div>
+            <div class="col-sm-4 right" ></div>
         </div>
     </div>
     <script src="../public/js/home.js"></script>

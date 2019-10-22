@@ -75,10 +75,12 @@ const uploadImage = async (req, res) => {
 //get post of all users
 const viewPost = async (req, res) => {
     try {
-        let user = await signupdata.find({ _id: req.headers.tokenValue })
+
+        let user = await signupdata.find({_id:req.headers.tokenValue})
         let obj = new Object()
         obj.name = user[0].firstName + ' ' + user[0].lastName
         obj.image = user[0].profileImage;
+
         let post = await PostModel.find().sort({ "postedAt": 'desc' })
         return ({ post, obj });
     }
@@ -137,8 +139,9 @@ const userComment = async (req, res) => {
         }
     }
 }
-const getComments = async (req, res) => {
-    try {
+
+const comments = async(req , res )=>{
+    try{
         let postID = req.query.postId
         let comment = await commentModel.find({ 'postId': postID }).sort({ "createdAt": 'desc' })
         return comment;
@@ -279,9 +282,7 @@ module.exports = {
     checkUserToken,
     saveUserPost,
     userComment,
-    getComments,
-    updatePassword,
-    updateUsername,
+    comments,
     saveLikes,
     removeLikes,
     saveSharedPost,

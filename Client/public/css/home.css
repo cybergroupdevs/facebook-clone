@@ -7,7 +7,7 @@ body {
 nav {
     background-color: #3b5998;
     padding: 7px 0px 4px 10%;
-    height: 50px;
+    height: 70px;
     width: 100%;
 }
 
@@ -43,6 +43,20 @@ nav * {
 
 .search-icon img {
     height: 15px;
+    width:15px;
+  }
+  .right-side{
+      position: relative;
+      left: 25%;
+  }
+  .profile{
+      text-decoration: none;
+      height: 35px;
+      border-radius: 5px;
+      text-align: center;
+      width: 120px;
+  }
+  .home-create{
     width: 15px;
 }
 
@@ -79,6 +93,7 @@ nav * {
 
 .notice-icon a {
     text-decoration: none;
+    margin-left: 900px;
     height: 18px;
     margin: 5px;
 }
@@ -137,10 +152,14 @@ nav * {
         font-size: 12px;
     }
 }
+.main{
 
-.main {
-    background: white;
+    background: white; 
+    margin-left: 40%;
     padding: 30px;
+    /* margin-top: -600px; */
+    float: right;
+    box-shadow: 0px 0px 15px 1px rgba(0,0,0,0.75);
 }
 
 .post-form {
@@ -223,7 +242,6 @@ textarea {
 }
 
 .postcard {
-    /* width: 50%; */
     margin: 0 auto;
 }
 
@@ -290,14 +308,18 @@ textarea {
     background: #2d4b8b;
 }
 
+.show-comments-class{
+    height:50x;
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+}
 .show-comments {
     height: 300px;
     width: 300px;
     border-radius: 20px;
+    word-spacing: 40px;
 }
-
-
-/* comment display */
 
 .comment-div {
     display: flex;
@@ -331,3 +353,6 @@ textarea {
 .comment_container h6 {
     font-size: 12px;
 }
+
+
+   

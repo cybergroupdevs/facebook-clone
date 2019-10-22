@@ -48,7 +48,6 @@ $(document).ready(function() {
         if (mobile == "") {
             alert("Please enter your mobile number");
         } else {
-
             var regex = /^[1-9]\d{9}$/;
             if (regex.test(mobile) === false) {
                 alert("Please enter a valid 10 digit mobile number");
@@ -121,8 +120,6 @@ $(document).ready(function() {
                 email = true;
             }
         }
-
-
 
         if (password == "") {
             alert("Enter Password");

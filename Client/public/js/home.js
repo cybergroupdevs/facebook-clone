@@ -11,7 +11,7 @@ function showComments(id, data) {
                 let comment_div = document.createElement('div')
                 comment_div.setAttribute('class','comment-div')
                 let comment_user_image = document.createElement('img')
-                comment_user_image.setAttribute('src','../assets/1571682893768-baby.jpeg')
+                comment_user_image.setAttribute('src','../assets/1571706868509-fb_icon_325x325.png')
                 comment_div.appendChild(comment_user_image)
                 let comment_container = document.createElement('div')
                 comment_container.setAttribute('class','comment_container')
@@ -118,13 +118,13 @@ function showdata(data) {
         commentdom.setAttribute("class", "show-comments-class")
 
         likebox.appendChild(commentdom)
-        icomment.setAttribute('class', '"fa fa-comments-o')
+        icomment.setAttribute('class', 'fa fa-comments-o')
 
         let cardfooter = document.createElement("div")
         cardfooter.setAttribute('class', 'card-footer')
 		let likeOutput = document.createElement("div")
         postcard.appendChild(likeOutput)
-		
+
         let input = document.createElement('input')
         input.setAttribute('type', 'text')
         input.setAttribute('class', 'send-comment')
@@ -134,7 +134,6 @@ function showdata(data) {
         cardbody.appendChild(likebox)
     }
 }
-
 $(document).ready(function () {
     console.log('onload')
     $.ajax("http://localhost:9000/post", {
@@ -194,7 +193,7 @@ $(document).ready(function () {
     })
     //load user profile
     $("#user_profile").click(()=>{
-       
+
         $(location).attr('href','../views/profilePage.html')
     })
     //this will submit post
@@ -291,13 +290,11 @@ $(document).on('click', '#sharePost', function () {
 
 $(document).on('click', '#commentButton', function (e) {
     const postID = $(this).parent().parent().parent().parent().attr('id')
-    console.log('postID : ' + postID)
+     
     $(this).parent().parent().children().eq(1).attr('id', '_post' + postID)
     let commentID = $(this).parent().parent().children().eq(1).attr('id')
     $.ajax("http://localhost:9000/post/comment", {
-
         type: "GET",
-
         headers: {
             token: localStorage.getItem('userToken')
         },
@@ -312,6 +309,5 @@ $(document).on('click', '#commentButton', function (e) {
         error: function (error) {
             console.log(error + " " + "error occurred");
         }
-    });
-
+    })
 })
