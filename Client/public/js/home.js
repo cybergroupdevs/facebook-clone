@@ -135,6 +135,7 @@ function showdata(data) {
 }
 
 $(document).ready(function () {
+    console.log('onload')
     $.ajax("http://localhost:9000/post", {
         type: 'GET',
         dataType: 'JSON',
@@ -142,8 +143,17 @@ $(document).ready(function () {
             token: localStorage.getItem('userToken')
         },
         success: function (data) {
+<<<<<<< HEAD
             
             //document.getElementById("userName").innerHTML = data.obj.name
+=======
+
+            document.getElementById("userName").innerHTML = data.obj.name
+            // if( data.obj.image !=''){
+            // var img = document.getElementById("user-profile");
+            // img.setAttribute('src',data.obj.image);
+            // }
+>>>>>>> 471b9072d19315e1bbcae200a3bb5c0e0d3992ef
             showdata(data.post)
         },
         error: function (error) {
@@ -188,6 +198,11 @@ $(document).ready(function () {
     $(".fa-sign-out").click(()=>{
         localStorage.removeItem('userToken')
         $(location).attr('href','../index.html')
+    })
+    //load user profile
+    $("#user_profile").click(()=>{
+       
+        $(location).attr('href','../views/profilePage.html')
     })
     //this will submit post
 
