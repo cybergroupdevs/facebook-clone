@@ -113,7 +113,7 @@ const userComment = async( req , res ) =>{
             }
         }
     }
-const getComments = async(req , res )=>{
+const comments = async(req , res )=>{
     try{
         let postID = req.query.postId
         let comment = await commentModel.find({'postId':postID}).sort({"createdAt":'desc'})
@@ -167,7 +167,7 @@ module.exports = {
     checkUserToken,
     saveUserPost,
     userComment,
-    getComments,
+    comments,
     saveLikes,
     deleteLikes,
     saveSharedPost

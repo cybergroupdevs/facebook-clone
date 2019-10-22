@@ -9,13 +9,13 @@ $(document).ready( function(){
         var confirmPassword = document.getElementById("SignUpFormConfirmPassword").value;
         if(fname === "") {
             alert("Please enter your first name");
-        } 
+        }
         else {
             fname = true
-            var regex = /^[a-zA-Z\s]+$/;                
+            var regex = /^[a-zA-Z\s]+$/;
             if(regex.test(fname) === false) {
                 alert("Please enter a valid first name");
-            } 
+            }
             else{
                 fname = true;
             }
@@ -26,10 +26,10 @@ $(document).ready( function(){
         }
         else {
             lname = true
-            var regex = /^[a-zA-Z\s]+$/;                
+            var regex = /^[a-zA-Z\s]+$/;
             if(regex.test(lname) === false) {
                 alert("Please enter a valid last name");
-            } 
+            }
             else{
                 lname = true;
             }
@@ -40,10 +40,10 @@ $(document).ready( function(){
         }
         else {
             email = true
-            var regex = /^[a-zA-Z\s]+$/;                
+            var regex = /^[a-zA-Z\s]+$/;
             if(regex.test(email) === false) {
                 alert("Please enter a valid email");
-            } 
+            }
             else{
                 email = true;
             }
@@ -52,23 +52,19 @@ $(document).ready( function(){
         if(mobile == "") {
             alert( "Please enter your mobile number");
         } else {
-          
             var regex = /^[1-9]\d{9}$/;
             if(regex.test(mobile) === false) {
                 alert("Please enter a valid 10 digit mobile number");
             } else{
                 phone= true;
-                
             }
         }
 
         if (password != confirmPassword) {
             alert("Passwords do not match.");
-            
         }
         else{
             password = true;
-            
         }
 
         if((fname || lname || email || phone || password )== true) {
@@ -88,13 +84,14 @@ $(document).ready( function(){
                 data:JSON.stringify(signUpData),
                 contentType: "application/json; charset=utf-8",
                 success:function(data, status){
+                    location.reload(true);
                     //console.log(data.msg)
                 },
                 error: function(error){
                     console.log("error : "+error)
                 }
             })
-        } 
+        }
         else {
             return false;
         }
@@ -105,33 +102,28 @@ $(document).ready( function(){
 $(document).ready( function(){
     document.getElementById('loginbtn').addEventListener('click',validateForm)
     function validateForm(){
-        
         var email = document.getElementById("LoginFormEmail").value;
-        
+
         var password = document.getElementById("LoginFormPassword").value;
         if(email === "") {
             alert("Please enter your email");
         }
         else {
             email = true
-            var regex = /^[a-zA-Z\s]+$/;                
+            var regex = /^[a-zA-Z\s]+$/;
             if(regex.test(email) === false) {
                 alert("Please enter a valid email");
-            } 
+            }
             else{
                 email = true;
             }
         }
 
-        
-
         if (password == "") {
             alert("Enter Password");
-            
         }
         else{
             password = true;
-            
         }
 
         if(( email || password )== true) {
@@ -154,7 +146,7 @@ $(document).ready( function(){
                     console.log('error '+ error)
                 }
             })
-        } 
+        }
         else {
             return false;
         }

@@ -117,7 +117,7 @@ function showdata(data) {
         commentdom.setAttribute("class", "show-comments-class")
 
         likebox.appendChild(commentdom)
-        icomment.setAttribute('class', '"fa fa-comments-o')
+        icomment.setAttribute('class', 'fa fa-comments-o')
 
         let cardfooter = document.createElement("div")
         cardfooter.setAttribute('class', 'card-footer')

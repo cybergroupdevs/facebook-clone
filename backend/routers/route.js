@@ -60,7 +60,7 @@ module.exports = () => {
     })
     //route to get comments of post
     app.get('/post/comment', (req, res) => {
-        Users.getComments(req, res);
+        Users.comments(req, res);
     })
 
     app.post('/post/like', (req, res) => {

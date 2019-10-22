@@ -46,9 +46,9 @@ const userComment = async(req,res)=>{
         console.log(error)
     }
 }
-const getComments = async( req, res )=>{
+const comments = async( req, res )=>{
     try{
-        let data = await User.getComments(req ,res)
+        let data = await User.comments(req ,res)
         res.status(200).send(data);
     }
     catch(error ){
@@ -77,7 +77,7 @@ module.exports = {
     checkUserToken,
     saveUserPost,
     userComment,
-    getComments,
+    comments,
     viewPost,
     saveLikes,
     deleteLikes,

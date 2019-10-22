@@ -8,6 +8,7 @@ body {
         padding: 7px 0px 4px 10%;
         height: 50px;
         width: 100%;
+        overflow: hidden;
   }
   nav *{
     display:inline-block;
