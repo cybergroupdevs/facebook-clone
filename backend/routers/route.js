@@ -67,7 +67,7 @@ module.exports = () => {
 
     //route to save user posts in backends
     app.post('/post', upload.single('image'), (req, res) => {
-        req.body['postImage'] = '/assets/' + req.file.filename;
+        req.body['postImage'] = '/Client/assets/' + req.file.filename;
 
         Users.saveUserPost(req, res);
     })
@@ -84,7 +84,7 @@ module.exports = () => {
     })
     //route to get comments of post
     app.get('/post/comment', (req, res) => {
-        Users.getComments(req, res);
+        Users.comments(req, res);
     })
 
     app.post('/post/like', (req, res) => {

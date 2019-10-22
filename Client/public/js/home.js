@@ -11,7 +11,7 @@ function showComments(id, data) {
                 let comment_div = document.createElement('div')
                 comment_div.setAttribute('class','comment-div')
                 let comment_user_image = document.createElement('img')
-                comment_user_image.setAttribute('src','../assets/1571682893768-baby.jpeg')
+                comment_user_image.setAttribute('src','../assets/1571706868509-fb_icon_325x325.png')
                 comment_div.appendChild(comment_user_image)
                 let comment_container = document.createElement('div')
                 comment_container.setAttribute('class','comment_container')
@@ -117,7 +117,7 @@ function showdata(data) {
         commentdom.setAttribute("class", "show-comments-class")
 
         likebox.appendChild(commentdom)
-        icomment.setAttribute('class', '"fa fa-comments-o')
+        icomment.setAttribute('class', 'fa fa-comments-o')
 
         let cardfooter = document.createElement("div")
         cardfooter.setAttribute('class', 'card-footer')
