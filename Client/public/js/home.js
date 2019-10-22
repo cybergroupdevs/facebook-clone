@@ -9,7 +9,7 @@ function showComments(id,data){
             $('#'+id).empty()
             for(i=0;i<data.length;i++){
                 var a = document.createElement('div')
-                a.innerHTML = data[i].commentText + data[i].createdAt
+                a.innerHTML = data[i].commentText +"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp" + data[i].createdAt
                 b.appendChild(a)
             }
 
@@ -104,7 +104,7 @@ function showdata(data){
             commentdom.setAttribute("class","show-comments-class")
            
             likebox.appendChild(commentdom)
-            icomment.setAttribute('class','"fa fa-comments-o')
+            icomment.setAttribute('class','fa fa-comment')
 
             let cardfooter = document.createElement("div")
             cardfooter.setAttribute('class','card-footer')

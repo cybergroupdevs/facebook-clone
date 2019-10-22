@@ -209,8 +209,11 @@ textarea{
     background: #2d4b8b;
 }
 
-.show-comments{
-    height:300px;
-    width: 300px;
+.show-comments-class{
+    height:50x;
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
     border-radius: 20px;
+    word-spacing: 40px;
 }
