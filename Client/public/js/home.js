@@ -121,6 +121,9 @@ function showdata(data) {
 
         let cardfooter = document.createElement("div")
         cardfooter.setAttribute('class', 'card-footer')
+		let likeOutput = document.createElement("div")
+        postcard.appendChild(likeOutput)
+		
         let input = document.createElement('input')
         input.setAttribute('type', 'text')
         input.setAttribute('class', 'send-comment')
@@ -180,11 +183,14 @@ $(document).ready(function () {
             });
         }
     })
+
+    //logout user
     $(".fa-sign-out").click(()=>{
         localStorage.removeItem('userToken')
         $(location).attr('href','../index.html')
     })
     //this will submit post
+
     $("#btn").click(function () {
         //get text
         var postText = $.trim($("#myTextarea").val());
@@ -213,6 +219,9 @@ $(document).ready(function () {
 });
 
 $(document).on('click', '#saveLike', function () {
+    let postId = $(this).parent().parent().parent().parent().attr('id')
+    $(this).parent().parent().parent().parent().children(":nth-last-child(2)").attr("id",'_like'+postId)
+    let likeID = $(this).parent().parent().parent().parent().children(":nth-last-child(2)").attr("id")
     if ($(this).css("color") == 'rgb(128, 128, 128)') {
         $(this).css("color", "blue")
         $.ajax('http://localhost:9000/post/like', {
@@ -224,7 +233,9 @@ $(document).on('click', '#saveLike', function () {
             data: {
                 postId: $(this).parent().parent().parent().parent().attr('id')
             },
-            success: function () { },
+            success: function (data) {
+                document.getElementById(likeID).innerHTML = data.count + " Likes"
+            },
             error: function () { }
         })
     }
@@ -239,7 +250,9 @@ $(document).on('click', '#saveLike', function () {
             data: JSON.stringify({
                 postId: $(this).parent().parent().parent().parent().attr('id')
             }),
-            success: function () { },
+            success: function (data){
+                document.getElementById(likeID).innerHTML = data.count + " Likes"
+            },
             error: function () { }
         })
     }
