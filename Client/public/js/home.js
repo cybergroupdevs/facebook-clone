@@ -72,6 +72,7 @@ function showdata(data) {
         cardbody.appendChild(postImage)
         let postImg = document.createElement('img')
         postImg.setAttribute('src', data[i].postImage)
+        postImg.setAttribute('alt','upload image')
         postImage.appendChild(postImg)
 
         let hr = document.createElement("hr")
@@ -200,6 +201,9 @@ $(document).ready(function () {
         //get text
         var postText = $.trim($("#myTextarea").val());
         var formData = new FormData();
+        if ( $("#image").val() == ''){
+            return alert('please upload image')
+        }
         formData.append('postText', postText);
         // Attach upload file
         formData.append('image', $('input[type=file]')[0].files[0]);
@@ -220,7 +224,6 @@ $(document).ready(function () {
             }
         });
     });
-
 });
 
 $(document).on('click', '#saveLike', function () {
