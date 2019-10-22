@@ -48,7 +48,6 @@ const particularUserData  = async(req,res)=>{
         let userPost = await PostModel.find({userId: email}).sort({"postedAt":'desc'})
 
             return res.status(200).send( {userPost, obj} );
-        
     }
     catch (error) {
         return res.status(200).send({ message: 'No Posts exist for this user' })
@@ -158,28 +157,24 @@ const getComments = async(req , res )=>{
 const updatePassword = async(req ,res )=>{
     //console.log("hello")
     try{
-        
+
         let userId = await signupdata.findOne({ _id : req.headers.tokenValue})
         oldPwd = req.body.oldPwd //oldp fetches Password that is input from the user while updating the password
         newPassword = req.body.newPassword//The new password input from the user
-        let password = userId.password//hashed password fetched from the database 
+        let password = userId.password//hashed password fetched from the database
         let status = bcryptjs.compareSync(oldPwd,password) //password = password set at signup.
         var hash = bcryptjs.hashSync(newPassword, 8)
         newPassword = hash
-        
-        
-        
         if(status){
            let updation =  await signupdata.findOneAndUpdate({
                 _id : req.headers.tokenValue
             },
-            
             {
                 $set:{
                 "password" : newPassword
                 }
             }
-            );   
+            );
         }
     }
     catch(error){
@@ -190,7 +185,7 @@ const updateUsername = async(req , res )=>{
     try{
         //console.log("welcome to user.updateusername")
         let user = await signupdata.findOne({ _id : req.headers.tokenValue})
-        //let email = user.email 
+        //let email = user.email
         oldEmail = req.body.existUname//old username input from the user
         newEmail = req.body.newUname//new username that the user wants
         let checkEmailExistence1 = await signupdata.findOne({email:newEmail})
@@ -201,11 +196,9 @@ const updateUsername = async(req , res )=>{
                msg:"Username already exists"
            })
        }
-        
         if(checkEmailExistence1 == null){
             let checkEmailExistence = await signupdata.find({email:oldEmail})
             //console.log(checkEmailExistence)
-            
                 await signupdata.findOneAndUpdate({
                     _id : req.headers.tokenValue
                 },
@@ -222,12 +215,10 @@ const updateUsername = async(req , res )=>{
                         "userId" : newEmail
                     }
                 });
-                
                 res.send({
                     status:200,
                     msg:'Email/username Updated'
                 })
-            
         }
         else{
             return res.send({
@@ -238,9 +229,7 @@ const updateUsername = async(req , res )=>{
     }
         catch(error){
             console.log(error)
-        }
-        
-       
+	}
 }
 
 const saveLikes = async (req, res) => {
