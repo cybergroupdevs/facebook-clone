@@ -100,24 +100,18 @@ $(document).ready(function () {
          token: localStorage.getItem('userToken')
       },
       success: function (data) {
-          console.log(data)
          var img = document.getElementById('profile-pic');
          img.setAttribute('src', data.obj.uploadImage)
          document.getElementById('showName').innerHTML = data.obj.name
          showdata1(data.userPost)
       },
       error: function (error) {
-        // localStorage.removeItem("userToken")
-         //  $(location).attr('href','../index.html')
       }
    })
 
    $("#profileToHome").click(() => {
       $(location).attr('href', '../views/home.html')
-      //console.log("route hit on clicking profile")
    })
-
-
    $("#updatePassword").click(function (event) {
       console.log('hello')
       event.preventDefault()
@@ -142,10 +136,10 @@ $(document).ready(function () {
             "newPassword": newPwd
          }),
          success: function (data, status) {
-            console.log(data.msg)
+            alert('password updated')
+
          },
          error: function (data, error) {
-            //  console.log(error +" "+ "error occurred");
          }
       })
    })
@@ -156,9 +150,7 @@ $(document).ready(function () {
       if (newUsername == existingUsername) {
          return alert("Please Enter new username ")
       }
-      // console.log(existingUsername)
-      // console.log(newUsername)
-
+     
       $.ajax("http://localhost:9000/profilePage/updateUsername", {
          type: "PATCH",
          dataType: "json",
@@ -194,7 +186,6 @@ $(document).ready(function () {
    $("#uploadpp").click(() => {
       console.log("You are on the right path to upload your image")
       var formData = new FormData();
-      return
       formData.append('image', $('input[type=file]')[0].files[0]);
       console.log("jhjhjkvsdadfSGVREV")
       console.log(formData.values('image'));

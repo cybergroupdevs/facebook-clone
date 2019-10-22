@@ -33,34 +33,22 @@ module.exports = () => {
     })
 
     app.post('/login',(req,res)=>{
-       // console.log("hello")
         Users.checkLoginUser(req,res)
     })
 
-    
-   
-    
     app.use(authMiddleware)
-
-    
     app.get('/profilePage',(req,res)=>{
-       console.log('get ------=')
+       
         Users.particularUserData(req,res)
     })
     app.patch('/profilePage/updatePassword',(req,res)=>{
-       
        Users.updatePassword(req,res);
-
     })
     app.patch('/profilePage/updateUsername',(req,res)=>{
-       // console.log(req.body.existUname)
-        //console.log(req.body.newUname)
-       // console.log(req.headers)
        Users.updateUsername(req,res);
 
     })
     app.patch('/profilePage/uploadProfilePhoto',upload.single('image'),(req,res)=>{
-        console.log(req.file)
         req.body['profileImage'] = '/assets/' + req.file.filename;
         Users.uploadImage(req,res);
     })
@@ -73,7 +61,6 @@ module.exports = () => {
     })
     //route to get posts from backend
     app.get('/post', async (req, res) => {
-        console.log('get post')
         const response = await Users.viewPost(req, res);
         //return response
     })
