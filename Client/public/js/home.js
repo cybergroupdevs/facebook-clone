@@ -135,7 +135,6 @@ function showdata(data) {
     }
 }
 $(document).ready(function () {
-    console.log('onload')
     $.ajax("http://localhost:9000/post", {
         type: 'GET',
         dataType: 'JSON',

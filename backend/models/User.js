@@ -227,7 +227,14 @@ const updateUsername = async (req, res) => {
         console.log(error)
     }
 }
-
+const rmPost = async (req,res)=>{
+    try{
+        let removedPostData = await PostModel.findOneAndDelete({_id:req.body.postId})
+        return removedPostData
+    }catch(err){
+        console.log(err)
+    }
+}
 const saveLikes = async (req, res) => {
     const existingLike = await LikeModel.findOne({ "postId": req.body.postId, "userId": req.headers.tokenValue })
     if (existingLike === null) {
@@ -286,5 +293,8 @@ module.exports = {
     saveLikes,
     removeLikes,
     saveSharedPost,
-    uploadImage
+    uploadImage,
+    updatePassword,
+    updateUsername,
+    rmPost
 }

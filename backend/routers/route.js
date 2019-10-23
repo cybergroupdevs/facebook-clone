@@ -52,11 +52,14 @@ module.exports = () => {
         req.body['profileImage'] = '/assets/' + req.file.filename;
         Users.uploadImage(req,res);
     })
-
+    //delete user post from user profile
+    app.delete('/profilePage',(req,res)=>{
+        Users.rmPost(req,res);
+    })
     //route to save user posts in backends
     app.post('/post', upload.single('image'), (req, res) => {
-        req.body['postImage'] = '/Client/assets/' + req.file.filename;
-
+        console.log(req)
+        req.body['postImage'] = '/assets/' + req.file.filename;
         Users.saveUserPost(req, res);
     })
     //route to get posts from backend

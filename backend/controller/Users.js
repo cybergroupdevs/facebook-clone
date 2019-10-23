@@ -88,6 +88,15 @@ const uploadImage = async( req , res )=>{
     }
 }
 
+const rmPost = async (req,res)=>{
+    try{
+        let ress = await User.rmPost(req,res)
+        res.status(200).send(ress)
+    }catch(err){
+        console.log(err)
+    }
+}
+
 const saveLikes = async(req,res)=>{
     let response = await User.saveLikes(req,res)
     return response
@@ -115,5 +124,8 @@ module.exports = {
     removeLikes,
     particularUserData,
     saveSharedPost,
-    uploadImage
+    uploadImage,
+    updateUsername,
+    updatePassword,
+    rmPost
 }
