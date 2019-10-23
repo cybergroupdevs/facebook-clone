@@ -57,7 +57,6 @@ const comments = async( req, res )=>{
 }
 const particularUserData = async(req,res)=>{
     let response
-    //console.log("welcome to users.js")
     response = await User.particularUserData(req,res)
     return response
 }
@@ -89,6 +88,15 @@ const uploadImage = async( req , res )=>{
     }
 }
 
+const rmPost = async (req,res)=>{
+    try{
+        let ress = await User.rmPost(req,res)
+        res.status(200).send(ress)
+    }catch(err){
+        console.log(err)
+    }
+}
+
 const saveLikes = async(req,res)=>{
     let response = await User.saveLikes(req,res)
     return response
@@ -115,5 +123,9 @@ module.exports = {
     saveLikes,
     removeLikes,
     particularUserData,
-    saveSharedPost
+    saveSharedPost,
+    uploadImage,
+    updateUsername,
+    updatePassword,
+    rmPost
 }

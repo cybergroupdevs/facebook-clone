@@ -72,6 +72,7 @@ function showdata(data) {
         cardbody.appendChild(postImage)
         let postImg = document.createElement('img')
         postImg.setAttribute('src', data[i].postImage)
+        postImg.setAttribute('alt','upload image')
         postImage.appendChild(postImg)
 
         let hr = document.createElement("hr")
@@ -123,7 +124,7 @@ function showdata(data) {
         cardfooter.setAttribute('class', 'card-footer')
 		let likeOutput = document.createElement("div")
         postcard.appendChild(likeOutput)
-		
+
         let input = document.createElement('input')
         input.setAttribute('type', 'text')
         input.setAttribute('class', 'send-comment')
@@ -133,9 +134,7 @@ function showdata(data) {
         cardbody.appendChild(likebox)
     }
 }
-
 $(document).ready(function () {
-    console.log('onload')
     $.ajax("http://localhost:9000/post", {
         type: 'GET',
         dataType: 'JSON',
@@ -145,10 +144,7 @@ $(document).ready(function () {
         success: function (data) {
 
             document.getElementById("userName").innerHTML = data.obj.name
-            // if( data.obj.image !=''){
-            // var img = document.getElementById("user-profile");
-            // img.setAttribute('src',data.obj.image);
-            // }
+                $('.user-profile').attr('src',data.obj.image)
             showdata(data.post)
         },
         error: function (error) {
@@ -196,7 +192,7 @@ $(document).ready(function () {
     })
     //load user profile
     $("#user_profile").click(()=>{
-       
+
         $(location).attr('href','../views/profilePage.html')
     })
     //this will submit post
@@ -205,6 +201,9 @@ $(document).ready(function () {
         //get text
         var postText = $.trim($("#myTextarea").val());
         var formData = new FormData();
+        if ( $("#image").val() == ''){
+            return alert('please upload image')
+        }
         formData.append('postText', postText);
         // Attach upload file
         formData.append('image', $('input[type=file]')[0].files[0]);
@@ -225,7 +224,6 @@ $(document).ready(function () {
             }
         });
     });
-
 });
 
 $(document).on('click', '#saveLike', function () {
@@ -291,13 +289,11 @@ $(document).on('click', '#sharePost', function () {
 
 $(document).on('click', '#commentButton', function (e) {
     const postID = $(this).parent().parent().parent().parent().attr('id')
-    console.log('postID : ' + postID)
+     
     $(this).parent().parent().children().eq(1).attr('id', '_post' + postID)
     let commentID = $(this).parent().parent().children().eq(1).attr('id')
     $.ajax("http://localhost:9000/post/comment", {
-
         type: "GET",
-
         headers: {
             token: localStorage.getItem('userToken')
         },
@@ -312,6 +308,5 @@ $(document).on('click', '#commentButton', function (e) {
         error: function (error) {
             console.log(error + " " + "error occurred");
         }
-    });
-
+    })
 })

@@ -38,7 +38,7 @@ function showdata1(data) {
       postImage.setAttribute('class', 'post-img')
       cardbody.appendChild(postImage)
       let postImg = document.createElement('img')
-      postImg.setAttribute('src', '../assets/post.jpg')
+      postImg.setAttribute('src', data[i].postImage)
       postImage.appendChild(postImg)
 
       let hr = document.createElement("hr")
@@ -68,6 +68,17 @@ function showdata1(data) {
       comment.appendChild(icomment)
       commentcontent.appendChild(comment)
 
+      let deletepost = document.createElement("div")
+      deletepost.setAttribute('class','like-share-contents col-md-3')
+      deletepost.setAttribute('id',data[i]._id+i)
+      deletepost.setAttribute('onclick','deletepost(this.id)')
+      row.appendChild(deletepost)
+      let d = document.createElement('span')
+      let ficon = document.createElement('i')
+      ficon.setAttribute('class','fa fa-trash-o')
+      d.appendChild(ficon)
+      deletepost.appendChild(d)
+
       let sharecontent = document.createElement('div')
       sharecontent.setAttribute('class', 'col-md-3 like-share-contents')
       sharecontent.setAttribute('id', 'sharePost')
@@ -92,7 +103,6 @@ function showdata1(data) {
 
 $(document).ready(function () {
 
-   console.log(localStorage.getItem('userToken'))
    $.ajax("http://localhost:9000/profilePage", {
       type: 'GET',
       dataType: 'JSON',
@@ -100,24 +110,49 @@ $(document).ready(function () {
          token: localStorage.getItem('userToken')
       },
       success: function (data) {
-          console.log(data)
          var img = document.getElementById('profile-pic');
          img.setAttribute('src', data.obj.uploadImage)
          document.getElementById('showName').innerHTML = data.obj.name
          showdata1(data.userPost)
       },
       error: function (error) {
-        // localStorage.removeItem("userToken")
-         //  $(location).attr('href','../index.html')
       }
    })
 
+   $("#createPost").click(function () {
+      //get text
+      var postText = $.trim($("#myTextarea").val());
+      var formData = new FormData();
+      if ( $("#image").val() == ''){
+          return alert('please upload image')
+      }
+      formData.append('postText', postText);
+      // Attach upload file
+      let imageVal = $("#image").val();
+      // formData.append('image', $('input[type=file]')[0].files[0]);
+      formData.append('image', $('#image').val());
+      console.log(formData)
+      $.ajax("http://localhost:9000/post", {
+          type: "POST",
+          data: formData,
+          dataType: "json",
+          headers: {
+              token: localStorage.getItem('userToken')
+          },
+          contentType: false,
+          processData: false,
+          success: function (data, status) {
+              location.reload(true);
+          },
+          error: function (error) {
+              console.log(JSON.stringify(error) + " " + "error occurred");
+          }
+      });
+  });
+
    $("#profileToHome").click(() => {
       $(location).attr('href', '../views/home.html')
-      //console.log("route hit on clicking profile")
    })
-
-
    $("#updatePassword").click(function (event) {
       console.log('hello')
       event.preventDefault()
@@ -142,10 +177,10 @@ $(document).ready(function () {
             "newPassword": newPwd
          }),
          success: function (data, status) {
-            console.log(data.msg)
+            alert('password updated')
+            location.reload(true)
          },
          error: function (data, error) {
-            //  console.log(error +" "+ "error occurred");
          }
       })
    })
@@ -156,24 +191,20 @@ $(document).ready(function () {
       if (newUsername == existingUsername) {
          return alert("Please Enter new username ")
       }
-      // console.log(existingUsername)
-      // console.log(newUsername)
-
+     
       $.ajax("http://localhost:9000/profilePage/updateUsername", {
          type: "PATCH",
          dataType: "json",
          headers: {
             token: localStorage.getItem('userToken')
          },
-
          contentType: "application/json;charset=utf-8",
-
          data: JSON.stringify({
             "existUname": existingUsername,
             "newUname": newUsername
          }),
          success: function (data, status) {
-            console.log(data.msg)
+            location.reload(true)
             //   alert("Email Id already exits.Please re-enter your new Username")
          },
          error: function (data, error) {
@@ -192,12 +223,8 @@ $(document).ready(function () {
    })
 
    $("#uploadpp").click(() => {
-      console.log("You are on the right path to upload your image")
       var formData = new FormData();
-      return
       formData.append('image', $('input[type=file]')[0].files[0]);
-      console.log("jhjhjkvsdadfSGVREV")
-      console.log(formData.values('image'));
       $.ajax("http://localhost:9000/profilePage/uploadProfilePhoto", {
          type: "PATCH",
          data: formData,
@@ -216,5 +243,26 @@ $(document).ready(function () {
          }
       });
    })
-
 })
+function deletepost(id){
+   let postId = $("#"+id).parent().parent().parent().parent().attr('id')
+   console.log(postId)
+   $.ajax('http://localhost:9000/profilePage', {
+      type: "DELETE",
+      dataType: "json",
+      contentType: "application/json; charset=utf-8",
+      headers: {
+          token: localStorage.getItem('userToken')
+      },
+      data: JSON.stringify({
+          'postId':postId
+      }),
+      success: function (data) {
+         console.log(data +' no error')
+         location.reload(true);
+       },
+      error: function (err) {
+         console.log(err)
+      }
+  })
+}
