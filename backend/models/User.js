@@ -37,14 +37,12 @@ const loginUser = async (req, res) => {
 }
 
 const particularUserData = async (req, res) => {
-    //console.log("user.js")
     try {
         let signUpUser = await signupdata.find({ _id: req.headers.tokenValue })
         let obj = new Object();
         obj.name = signUpUser[0].firstName + ' ' + signUpUser[0].lastName
         obj.uploadImage = signUpUser[0].profileImage
         email = signUpUser[0].email
-        //console.log(obj);
         let userPost = await PostModel.find({ userId: email }).sort({ "postedAt": 'desc' })
 
         return res.status(200).send({ userPost, obj });
@@ -151,7 +149,6 @@ const comments = async(req , res )=>{
     }
 }
 const updatePassword = async (req, res) => {
-    //console.log("hello")
     try {
 
         let userId = await signupdata.findOne({ _id: req.headers.tokenValue })
@@ -179,13 +176,10 @@ const updatePassword = async (req, res) => {
 }
 const updateUsername = async (req, res) => {
     try {
-        //console.log("welcome to user.updateusername")
         let user = await signupdata.findOne({ _id: req.headers.tokenValue })
-        //let email = user.email
         oldEmail = req.body.existUname//old username input from the user
         newEmail = req.body.newUname//new username that the user wants
         let checkEmailExistence1 = await signupdata.findOne({ email: newEmail })
-        // console.log("status is :" +checkEmailExistence1)
         if (checkEmailExistence1 != null) {
             res.send({
                 status: 403,
@@ -194,7 +188,6 @@ const updateUsername = async (req, res) => {
         }
         if (checkEmailExistence1 == null) {
             let checkEmailExistence = await signupdata.find({ email: oldEmail })
-            //console.log(checkEmailExistence)
             await signupdata.findOneAndUpdate({
                 _id: req.headers.tokenValue
             },
